@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import SavedList from './Movies/SavedList';
 import MovieList from './Movies/MovieList';
 import Movie from './Movies/Movie';
@@ -9,8 +8,10 @@ export default class App extends Component {
     super();
     this.state = {
       savedList: []
+      
     };
   }
+
 
   addToSavedList = movie => {
     const savedList = this.state.savedList;
@@ -19,11 +20,12 @@ export default class App extends Component {
   };
 
   render() {
+
     return (
       <div>
         <SavedList list={this.state.savedList} />
         <div>Replace this Div with your Routes</div>
-        <Route path="/" exact component={MovieList} />
+        <Route path="/" exact render={(props)=><MovieList movie={this.state.savedList} />} />
         <Route path="/movies/:id" exact component={Movie}  />
       </div>
     );
